@@ -3,11 +3,19 @@ package fr.jnath.TNTMode;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+
+import fr.jnath.Utils.Utils;
 
 public class PlayerData implements Serializable{
 	/**
@@ -60,6 +68,28 @@ public class PlayerData implements Serializable{
 			}else end = true;
 		}
 		return lvl;
+	}
+	public void addKit(Kit kit) {
+		_myKit.add(kit.getName());
+	}
+	public Inventory buyKitInventory() {
+		Collection<Kit> allKit = Kit.getAllKit();
+		int curentSet=-1;
+		Inventory inv = Bukkit.createInventory(null, 54,"§cKit selector");
+		for(Kit kit : allKit) {
+			curentSet++;
+			if(this.haveKit(kit)) {
+				inv.setItem(curentSet, new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5));
+			}else {
+				int prix=kit.getPrix();
+				inv.setItem(curentSet, Utils.createItem(kit.getItemName()+" §c("+ChatColor.GOLD+String.valueOf(prix)+"$§c)", kit.getMaterial(), 1));
+			}
+			if(!(curentSet<44)) {
+				break;
+			}
+		}
+		return null;
+		
 	}
 	public List<Kit> getKit(){
 		List<Kit> myKit = new ArrayList<Kit>();

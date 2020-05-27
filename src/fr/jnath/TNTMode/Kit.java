@@ -21,16 +21,21 @@ public class Kit implements Serializable{
 	private String _name;
 	private String _itemName;
 	private Material _mat;
-	public Kit(String name, Integer TNT, List<ItemPlace> items, String itemName, Material mat) {
+	private int _prix;
+	public Kit(String name, Integer TNT, List<ItemPlace> items, String itemName, Material mat, int prix) {
 		_name=name;
 		s_all_tnt_per_kit.put(this, TNT);
 		s_all_kit.put(_name, this);
 		itemList=items;
 		_mat=mat;
 		_itemName=itemName;
+		_prix=prix;
 	}
 	public static int getTNT(Kit kit) {
 		return s_all_tnt_per_kit.get(kit);
+	}
+	public int getPrix() {
+		return _prix;
 	}
 	public static Kit getKit(String name) {
 		return s_all_kit.get(name);
