@@ -73,9 +73,9 @@ public class PlayerData implements Serializable{
 		_myKit.add(kit.getName());
 	}
 	public Inventory buyKitInventory() {
+		Inventory inv = Bukkit.createInventory(null, 54, "§cBuy kit");
 		Collection<Kit> allKit = Kit.getAllKit();
 		int curentSet=-1;
-		Inventory inv = Bukkit.createInventory(null, 54,"§cKit selector");
 		for(Kit kit : allKit) {
 			curentSet++;
 			if(this.haveKit(kit)) {
@@ -88,7 +88,7 @@ public class PlayerData implements Serializable{
 				break;
 			}
 		}
-		return null;
+		return inv;
 		
 	}
 	public List<Kit> getKit(){

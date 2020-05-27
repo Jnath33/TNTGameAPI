@@ -9,10 +9,10 @@ public class Main extends JavaPlugin{
 	@Override
 	public void onEnable() {
 		saveDefaultConfig();
-		
+		SetKit.set();
 		FichierPlayerData.setDefauldRepertory(getConfig().getString("TNTMode.relativeFolder"));
-		if(!new File(getConfig().getString("TNTMode.relativeFolder")).exists()) {
-			new File(getConfig().getString("TNTMode.relativeFolder")).mkdir();
+		if(!new File(getConfig().getString("TNTModeApi.relativeFolder")).exists()) {
+			new File(getConfig().getString("TNTModeApi.relativeFolder")).mkdir();
 		}
 	}
 }
