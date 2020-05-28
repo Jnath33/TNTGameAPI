@@ -1,6 +1,8 @@
 package fr.jnath.TNTMode;
 
 import java.io.File;
+
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
@@ -10,6 +12,8 @@ public class Main extends JavaPlugin{
 	public void onEnable() {
 		saveDefaultConfig();
 		SetKit.set();
+		PluginManager pm = getServer().getPluginManager();
+		pm.registerEvents(new Listeners(), this);
 		FichierPlayerData.setDefauldRepertory(getConfig().getString("TNTMode.relativeFolder"));
 		if(!new File(getConfig().getString("TNTModeApi.relativeFolder")).exists()) {
 			new File(getConfig().getString("TNTModeApi.relativeFolder")).mkdir();
