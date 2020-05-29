@@ -43,6 +43,7 @@ public class Listeners implements Listener {
 					if(event.getCurrentItem().getType()==Material.EMERALD_BLOCK) {
 						PlayerData.getPlayerData(player).addCoins(-kit.getPrix());
 						player.closeInventory();
+						PlayerData.getPlayerData(player).addKit(kit);
 						player.sendMessage("Vous venez d'acheter le kit "+kit.getName()+" il coutait "+String.valueOf(kit.getPrix())+" il vous reste maitenans "+String.valueOf(PlayerData.getPlayerData(player).getCoins()));
 					}else if(event.getCurrentItem().getType()==Material.REDSTONE_BLOCK){
 						player.closeInventory();
