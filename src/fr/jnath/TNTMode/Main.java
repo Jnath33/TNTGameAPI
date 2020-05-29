@@ -14,6 +14,8 @@ public class Main extends JavaPlugin{
 		SetKit.set();
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(new Listeners(), this);
+		getCommand("tntmoney").setExecutor(new TNTMoney());
+		getCommand("addpoint").setExecutor(new AddTNTMoney());
 		FichierPlayerData.setDefauldRepertory(getConfig().getString("TNTMode.relativeFolder"));
 		if(!new File(getConfig().getString("TNTModeApi.relativeFolder")).exists()) {
 			new File(getConfig().getString("TNTModeApi.relativeFolder")).mkdir();

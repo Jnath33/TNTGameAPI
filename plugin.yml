@@ -2,3 +2,9 @@ name: TNTModeAPI
 version: 1.0
 author: jnath&miaouCJ
 main: fr.jnath.TNTMode.Main
+commands:
+  tntmoney:
+    description: Vous donne votre argent.
+  addcoins:
+    description: ajoute 5000 coin au joueur qui execute cette commande
+    permission: add.coins.use
