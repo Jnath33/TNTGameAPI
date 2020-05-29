@@ -1,5 +1,7 @@
 package fr.jnath.TNTMode;
 
+import java.io.IOException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -7,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 
 import fr.jnath.Utils.Utils;
@@ -52,5 +55,16 @@ public class Listeners implements Listener {
 				}
 			}
 		}
+	}
+	@EventHandler
+	public void onQuit(PlayerQuitEvent event) {
+		Player player = event.getPlayer();
+		
+		try {
+			PlayerData.getPlayerData(player).save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		PlayerData.rmPlayerData(player);
 	}
 }
