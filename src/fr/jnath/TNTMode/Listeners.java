@@ -9,12 +9,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 
 import fr.jnath.Utils.Utils;
 
 public class Listeners implements Listener {
+	@EventHandler
+	public void onJoin(PlayerJoinEvent event) {
+		Player player = event.getPlayer();
+		FichierPlayerData.init(player.getUniqueId().toString(), player);
+	}
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
@@ -48,6 +54,12 @@ public class Listeners implements Listener {
 						player.closeInventory();
 						PlayerData.getPlayerData(player).addKit(kit);
 						player.sendMessage("Vous venez d'acheter le kit "+kit.getName()+" il coutait "+String.valueOf(kit.getPrix())+" il vous reste maitenans "+String.valueOf(PlayerData.getPlayerData(player).getCoins()));
+						try {
+							PlayerData.getPlayerData(player).save();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}else if(event.getCurrentItem().getType()==Material.REDSTONE_BLOCK){
 						player.closeInventory();
 						player.sendMessage("Achat abandoner");
