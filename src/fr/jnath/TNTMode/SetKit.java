@@ -29,6 +29,12 @@ public class SetKit {
 		new Kit("builder", 2, itemPlace3,"§cBuilder", Material.BRICK, 75000);
 
 		new Kit("More TNT", 8, new ArrayList<ItemPlace>(),"§cMax TNT", Material.TNT, 100000);
+
+		List<ItemPlace> itemPlace4 = new ArrayList<ItemPlace>();
+		itemPlace4.add(new ItemPlace(Utils.createItem("Obsidian", Material.OBSIDIAN, 2), 5));
+		itemPlace4.add(new ItemPlace(Utils.createItem("end stone", Material.ENDER_STONE, 10), 6));
+		itemPlace4.add(new ItemPlace(Utils.createItem("pierre", Material.COBBLESTONE, 64), 7));
+		new Kit("BuilderBlock", 3, itemPlace4 ,"§cBuilderBlock", Material.BRICK, 100000);
 		
 	}
 }
